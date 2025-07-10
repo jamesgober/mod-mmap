@@ -1,0 +1,57 @@
+[package] 
+name = "membase"
+version = "0.2.0"
+edition = "2021"
+readme  = "README.md"
+license = "Apache-2.0"
+
+documentation = "https://docs.rs/mod-mmap"
+repository    = "https://github.com/jamesgober/mod-mmap"
+homepage      = "https://github.com/jamesgober/mod-mmap"
+
+description = "Ultra-high performance async runtime with fast task cycling, lock-free scheduling, and zero-overhead performance"
+keywords = [
+    "async", 
+    "runtime", 
+    "performance", 
+    "concurrent",
+    "lock-free"
+]
+categories = [
+    "asynchronous",
+    "concurrency", 
+    "network-programming",
+    "web-programming",
+    "development-tools"
+]
+
+exclude = [
+    ".github/",
+    "benches/",
+    "docs/",
+    "dev/",
+]
+
+authors = [
+    "James Gober <code@jamesgober.dev>"
+]
+
+[dependencies]
+libc = "0.2"
+
+[target.'cfg(windows)'.dependencies]
+winapi = { version = "0.3", features = ["memoryapi", "handleapi", "sysinfoapi", "winbase", "winnt"] }
+
+[features]
+default = []
+huge_pages = []
+numa = []
+simd = []
+
+[dev-dependencies]
+criterion = "0.3"
+tempfile = "3.2"
+
+[[bench]]
+name = "mmap_bench"
+harness = false
